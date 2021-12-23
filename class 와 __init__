@@ -1,0 +1,23 @@
+class FCL:
+    def __init__(self, a, b):
+        self.a = a
+        self.b= b
+    def add(self):
+        c = self.a + self.b
+        return c
+    def mul(self):
+        c = self.a * self.b
+        return c
+    def sub(self):
+        c = self.a - self.b
+        return c
+
+
+N1 = int(input())
+N2 = int(input())
+
+N = FCL(N1, N2)
+
+print(N.add())
+print(N.mul())
+print(N.sub())
