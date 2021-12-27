@@ -1,0 +1,13 @@
+##기본적인 정렬 알고리즘은 (n-1)**2 이지만
+##병합정렬은 n * log2 n 밖에 안걸린다.
+
+def merge_sort(a):
+    if len(a) <= 1:
+        return a
+    m = len(a)//2
+    a1 = a[:m]
+    a2 = a[m:]
+    l = merge_sort(a1)
+    r = merge_sort(a2)
+    lst = merge(l, r)
+    return lst
