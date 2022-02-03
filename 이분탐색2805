@@ -1,0 +1,39 @@
+원래 Wiki부분에 정리했었는데 이제부터 Code쪽에 정리해보기로함
+
+백준 2805문제
+
+이분탐색문제이다
+
+첨에는 이분탐색 쉬운문제도 이해하기 너무 어려웠는데
+
+여러문제 풀다보니 이해가돼서 풀수있게됨
+
+
+```
+import sys
+
+N, M = map(int, sys.stdin.readline().split())
+L = list(map(int,sys.stdin.readline().split()))
+
+
+cutMin = 1
+cutMax = max(L)
+
+while cutMin <= cutMax:
+    cut = (cutMin + cutMax) // 2
+    allCut = 0
+    for i in L:
+        if i >= cut:
+            allCut += i - cut
+    if allCut >= M:
+        cutMin = cut + 1
+    else:
+        cutMax = cut -1
+
+print(cutMax)
+```
+
+
+근대 시간이 너무 오래 걸렸다. 무려 4876ms ... ㄷㄷ
+
+고수들 코드 보니까 from collections import Counter 를 썼
