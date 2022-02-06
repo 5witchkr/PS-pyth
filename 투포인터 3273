@@ -1,0 +1,23 @@
+투포인터라길래 뭔가 했는데 이분탐색처럼 풀수있었음
+
+```
+import sys
+n = int(sys.stdin.readline())
+L = sorted(list(map(int,sys.stdin.readline().split())))
+k = int(sys.stdin.readline())
+
+num = 0
+start, end = 0, n-1
+
+while start < end:
+    plus = L[start] + L[end]
+    if plus == k:
+        num += 1
+        start += 1
+    elif plus < k:
+        start += 1
+    else:
+        end -= 1
+
+print(num)
+```
