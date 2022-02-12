@@ -1,0 +1,31 @@
+이분탐색문제
+
+런타임에러많이 떠서 당황했는데 answer 값을 초기에 정해주니까 정답처리됨
+
+```
+import sys
+
+N = int(sys.stdin.readline())
+L = list(map(int, sys.stdin.readline().split()))
+L.sort()
+start = 0
+end = len(L)-1
+result = abs(L[start]+L[end])
+answer = [L[start],L[end]]
+
+while start < end:
+    s = L[start]
+    e = L[end]
+    p = s + e
+    if abs(p) < result:
+        result = abs(p)
+        answer = [s, e]
+        if p == 0:
+            break
+    if p < 0:
+        start += 1
+    else:
+        end -= 1
+
+print(answer[0], answer[1])
+```
