@@ -1,0 +1,30 @@
+
+```
+import queue
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+
+T = int(input())##테스트 케이스
+
+for _ in range(T):##테스트케이스만큼
+    n, m = list(map(int,input().split(' ')))## n = 문서갯수, m = 순서가 궁금한문서의 인덱스
+    queue = deque(list(map(int,input().split())))##문서목록을 queue에 넣어줌
+    count = 0##몇번째로 인쇄 되는지 확인해주기위해
+    while queue:
+        maximum = max(queue)##최대값
+        first = queue.popleft()##첫번째(젤왼쪽)값
+        m -= 1##왼쪽에서 한개를 뺐으니 순서가 궁금한 문서의 인덱스도 하나 줄어듬
+
+        if maximum == first:
+            count += 1
+            if m < 0:
+                print(count)
+                break
+        else:
+            queue.append(first)
+            if m < 0:
+                m = len(queue) -1
+       
+```
