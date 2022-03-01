@@ -31,7 +31,7 @@ def dijkstra(start):
     distance[start] = 0##시작지점은 0
 
     while q:
-        # 가장 최단 거리가 짧은 노드에 대한 정보 꺼내기
+        # 가장 최단 거리가 짧은 노드에 대한 정보 꺼내기 
         dist, now = heapq.heappop(q)
         # 현재 노드가 이미 처리된 적이 있는 노드라면 무시
         if distance[now] < dist:
@@ -40,8 +40,8 @@ def dijkstra(start):
         for i in graph[now]:
             cost = dist + i[1]
             # 현재 노드를 거쳐서, 다른 노드로 이동하는 거리가 더 짧은 경우
-            if cost < distance[i[0]]:
-                distance[i[0]] = cost
+            if cost < distance[i[0]]:###저장된 거리보다 작으면
+                distance[i[0]] = cost## cost로 (현재껄로) 바꿔줌
                 heapq.heappush(q, (cost, i[0]))
 
 # 다익스트라 알고리즘을 수행
@@ -54,33 +54,41 @@ for i in range(1, n+1):
     else:
         print(distance[i])##해당 정점의 최소거리를 출력
         
-        
+ ############################################################
+##############################################################
 import sys
-from heapq import heappush, heappop
-inf = 100000000
-v, e = map(int, sys.stdin.readline().split())##v는 정점, e는 간선
-k = int(sys.stdin.readline())#시작지점
-    
-L = [[] for _ in range(v + 1)]#전체그래프
-dp = [inf] * (v + 1)#갱신 할 그래프 ,정점의 갯수만큼 만들어줌 초기값은 INF
-heap = []
+input = sys.stdin.readline
+import heapq
 
-for i in range(e):
-    u, v, w = map(int, sys.stdin.readline().split())#u, v 는 이어진 정점 w는 사이 거리
-    L[u].append([v, w])##L[u]에 이어진 정점과 거리를 넣어줌
-    
-def dijkstra(start):
-    dp[start] = 0#시작지점은 거리가 0
-    heappush(heap, [0, start])
-    while heap:
-        w, n = heappop(heap)#가장 최단 거리가 짧은 노드에 대한 정보
-        for n_n, wei in s[n]:
-            n_w = wei + w
-            if n_w < dp[n_n]:
-                dp[n_n] = n_w
-                heappush(heap, [n_w, n_n])
+v, e = map(int,input().split())
+k = int(input())
+INF = int(1e9)
 
-dijkstra(k)
+graph = [[] * (v+1) for _ in range(v+1)]
+L = [INF] * (v+1)
 
-for i in dp[1:]:
-    print(i if i != inf else "INF")
+for _ in range(e):
+  a, b, c = map(int, input().split())
+  graph[a].append((b,c))
+
+def distra(k):
+  q = []
+  heapq.heappush(q, (0, k))
+  L[k] = 0
+  while q:
+    dist, now = heapq.heappop(q)
+    if L[now] < dist:
+      continue
+    for i in graph[now]:
+      cost = dist + i[1]
+      if cost < L[i[0]]:
+        L[i[0]] = cost
+        heapq.heappush(q,(cost,i[0]))
+
+distra(k)
+
+for i in range(1,v+1):
+  if L[i] == INF:
+    print("INF")
+  else:
+    print(L[i])
