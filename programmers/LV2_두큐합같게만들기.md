@@ -1,6 +1,7 @@
 - `시간초과`로 틀렸다.
 
  ```python
+ ## 틀린코드
  from collections import deque
 
 def solution(queue1, queue2):
@@ -23,9 +24,11 @@ def solution(queue1, queue2):
     return answer
 ```
 
-- sum에 소요되는 시간복잡도를 고려해서 줄여본 뒤 제출해봤다.
+- `sum`에 소요되는 `시간복잡도`를 고려해서 줄여본 뒤 제출해봤다.
+- 통과
 
 ```python
+## 통과코드
 from collections import deque
 
 def solution(queue1, queue2):
