@@ -16,5 +16,21 @@ for _ in range(sumCount):
     print(sumfun(startNum-1, endNum))
 ```
 
-- prefix_sum
+- `prefix_sum` 이용, stdin.readline()이용 -> `통과`
+- 여러번 계산해야하는 수들을 미리 한번만 계산한 뒤 return하는 방식으로 구현
 
+```python
+from sys import stdin
+
+numberSize, sumCount = map(int, stdin.readline().split())
+numbers = list(map(int, stdin.readline().split()))
+prefix = [0]
+sumNum = 0
+for num in numbers:
+    sumNum += num
+    prefix.append(sumNum)
+
+for _ in range(sumCount):
+    startNum, endNum = map(int, stdin.readline().split())
+    print(prefix[endNum] - prefix[startNum - 1])
+```
